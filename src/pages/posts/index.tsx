@@ -1,8 +1,10 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
+
 import { RichText } from 'prismic-dom';
 import Prismic from '@prismicio/client';
+import { useSession } from 'next-auth/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -22,6 +24,8 @@ interface PostsPageProps {
 }
 
 export default function Posts({ posts }: PostsPageProps) {
+  const [session] = useSession();
+
   return (
     <>
       <Head>
@@ -31,7 +35,7 @@ export default function Posts({ posts }: PostsPageProps) {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map(post => (
-            <Link key={post.slug} href={`/posts/${post.slug}`}>
+            <Link key={post.slug} href={session ? `/posts/${post.slug}` : `/posts/preview/${post.slug}`}>
               <a>
                 <time>{post.updatedAt}</time>
                 <strong>{post.title}</strong>
