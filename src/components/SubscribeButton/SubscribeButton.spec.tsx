@@ -62,6 +62,6 @@ describe('SubscribeButton component tests', () => {
 
     fireEvent.click(buttonElement)
 
-    expect(pushMock).toHaveBeenCalled()
+    expect(pushMock).toHaveBeenCalledWith('/posts')
   })
 })
