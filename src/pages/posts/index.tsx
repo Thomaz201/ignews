@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
       excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
       updatedAt: format(new Date(post.last_publication_date), 'dd \'de\' MMMM \'de\' yyyy ', {
         locale: ptBR
-      })
+      }).trim()
     }
   })
 
