@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     content: RichText.asHtml(response.data.content.splice(0, 3)),
     updatedAt: format(new Date(response.last_publication_date), 'dd \'de\' MMMM \'de\' yyyy ', {
       locale: ptBR
-    })
+    }).trim()
   }
 
   return {
