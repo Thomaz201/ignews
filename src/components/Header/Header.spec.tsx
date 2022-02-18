@@ -1,4 +1,4 @@
-import { render, RenderResult } from '@testing-library/react'
+import { render, RenderResult, screen } from '@testing-library/react'
 import { Header } from './'
 
 jest.mock('next/router', () => {
@@ -24,6 +24,8 @@ describe('Header component tests', () => {
     const documentBody: RenderResult = render(
       <Header />
     )
+
+    screen.logTestingPlaygroundURL()
 
     const homeAnchorElement = documentBody.getByText('Home')
     const postsAnchorElement = documentBody.getByText('Posts')
